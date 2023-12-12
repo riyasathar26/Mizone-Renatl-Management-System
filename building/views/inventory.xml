@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+<!--      action section in the below record tag-->
+    <record model="ir.actions.act_window" id="inventory_action_window">
+      <field name="name">Inventory</field>
+      <field name="res_model">product.template</field>
+      <field name="view_mode">kanban,form</field>
+<!--        <field name="context">{'default_view_mode': 'kanban'}</field>-->
+    </record>
+
+    <menuitem name="Inventory" id="inventory_menu" parent="main_menu" action="inventory_action_window" sequence="15"/>
+
+
+  </data>
+
+</odoo>

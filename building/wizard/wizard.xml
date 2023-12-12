@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="report_id">
+      <field name="name">Building Report</field>
+      <field name="model">building.report</field>
+      <field name="arch" type="xml">
+          <form>
+              <group>
+                  <field name="room" widget="radio"/>
+                  <field name="product" widget="radio" options="{'room': False}"/>
+
+              </group>
+              <footer>
+                  <button name="Print_report" string="Print" class="oe_highlight" type="object"/>
+                  <button name="Cancel" string="Cancel" special="cancel"/>
+              </footer>
+          </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="reportdetails_action">
+      <field name="name">Building Report</field>
+      <field name="res_model">building.report</field>
+      <field name="view_mode">form</field>
+      <field name="type">ir.actions.act_window</field>
+<!--        this is line is for popup-->
+      <field name="target">new</field>
+    </record>
+
+    <menuitem name="Mizone" id="main_menu"/>
+
+
+    <menuitem name="Report " id="reportdetails_root" parent="main_menu"
+              action="reportdetails_action" sequence="30"/>
+
+  </data>
+</odoo>

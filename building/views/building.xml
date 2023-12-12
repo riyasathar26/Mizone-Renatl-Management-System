@@ -1,0 +1,120 @@
+<odoo>
+    <record id="bld_tree" model="ir.ui.view">
+            <field name="name">building_tree</field>
+            <field name="model">building.building</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                    <tree string ='Admission'>
+<!--                        <field name="seq"/>-->
+                        <field name="image"/>
+                        <field name="bld_name"/>
+                        <field name="bld_code"/>
+<!--                        <field name="street"/>-->
+
+                    </tree>
+            </field>
+    </record>
+
+  <data>
+<!--      action section in the below record tag-->
+      <record model="ir.actions.act_window" id="building_action_window">
+        <field name="name">Building </field>
+        <field name="res_model">building.building</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="bld_form" model="ir.ui.view">
+            <field name="name">Building</field>
+            <field name="model">building.building</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Details">
+                    <sheet>
+                         <h3 class="text-center" style="font-size:20px;text-align:center">Building Details</h3>
+                                                <br/>
+                        <br/>
+                         <div class="oe_title">
+                            <h1>
+                                <field name="bld_name" placeholder="Building Name" string="Name" required="1"/>
+                            </h1>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            <group>
+                                <group>
+                                    <label for="street" string="Address"/>
+                                        <div class="o_address_format">
+                                            <field name="street1" id="street_page_lead" placeholder="Street..."
+                                                   class="o_address_street"/>
+                                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                            <field name="country" placeholder="Country" class="o_address_country"
+                                                   options="{&quot;no_open&quot;: True}"/>
+                                            <div class="o_row">
+                                                <field name="city" placeholder="City" class="o_address_city"/>
+                                                <field name="state" class="o_address_state" placeholder="State"
+                                                       options="{&quot;no_open&quot;: True}"/>
+                                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                            </div>
+
+                                        </div>
+                                </group>
+                                <group>
+                                    <field name="image" widget="image" options="{'size': (200, 200)}" nolabel="1" class="text-center"/>
+                                </group>
+                            </group>
+                        </div>
+                        <notebook>
+
+                            <page string="Images">
+                                <group class="hide_list" modifiers="{}">
+                                    <field name="product_template_image_ids" class="o_website_sale_image_list" mode="kanban" options="{'create_text':'Add a Media'},{'no_create': True}" nolabel="1" modifiers="{}"/>
+                                </group>
+                            </page>
+<!--                             <page string="Media">-->
+<!--                                <group>-->
+<!--                                    <field name="extra_media_ids" widget="many2many_binary" options="{'no_create': True}" string="Extra Media"/>-->
+<!--                                </group>-->
+<!--                            </page>-->
+                            <page string="Documents">
+                                <field name="attachment_ids" widget="many2many_binary" options="{'no_create': True}" string="Attachments"/>
+                            </page>
+                            <page string="Floor Plan">
+                                <form>
+                                    <group>
+                                        <field name="floor_plan" widget="image" options="{'size': (100, 100)}"/>
+                                    </group>
+                                </form>
+                            </page>
+<!--                            <page string="Geo Location">-->
+<!--                                <group>-->
+<!--                                    <field name="latitude" string="Latitude"/>-->
+<!--                                    <field name="longitude" string="Longitude"/>-->
+<!--                                </group>-->
+<!--                                <button name="open_google_maps" string="Open Google Map" type="object" class="btn-danger"/>-->
+<!--                            </page>-->
+                            <page string="Internal Notes">
+                                    <field name="comment" placeholder="Internal note..."/>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                        <div class="oe_chatter">
+                              <field name="message_follower_ids" widget="mail_followers" group="base.group_user"/>
+                              <field name="message_ids" widget="mail_thread"/>
+                            <field name="activity_ids"/>
+                        </div>
+
+                </form>
+
+            </field>
+  </record>
+    <menuitem name="Mizone" id="main_menu" sequence="-2"/>
+
+
+    <menuitem name="Building Details" id="bulding_menu" parent="main_menu" action="building_action_window" sequence="5"/>
+
+
+  </data>
+
+</odoo>

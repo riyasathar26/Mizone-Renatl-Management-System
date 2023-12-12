@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+
+<!--   <record id="room_report" model="report.paperformat">-->
+<!--   <field name="name">paperformat.reception.report</field>-->
+<!--   <field name="default" eval="True"></field>-->
+<!--      <field name="format">A4</field>-->
+<!--      <field name="page_width">0</field>-->
+<!--      <field name="orientation">Portrait</field>-->
+<!--      <field name="margin_top">30</field>-->
+<!--      <field name="margin_right">5</field>-->
+<!--      <field name="margin_bottom">10</field>-->
+<!--      <field name="margin_left">5</field>-->
+<!--      <field name="header_line" eval="False"></field>-->
+<!--      <field name="header_spacing">20</field>-->
+<!--      <field name="dpi">90</field>-->
+<!--   </record>-->
+<!--&lt;!&ndash;   above code is to style and display a pdf report&ndash;&gt;-->
+
+<!--   <report-->
+<!--         id="building_room_report"-->
+<!--         model="building.report.report"-->
+<!--         string=" Building Report"-->
+<!--         report_type="qweb-html"-->
+<!--         name="building.building_room_report_template"-->
+<!--         paperformat="room_report"-->
+<!--         menu="False"-->
+<!--   />-->
+<!--        <template id="building_room_report_template">-->
+<!--    <t t-call="web.html_container">-->
+<!--        <div class="page">-->
+<!--            <div class="sheet">-->
+<!--                <div class="header">-->
+<!--                    <h1>Building Report</h1>-->
+<!--                </div>-->
+<!--                <div class="main">-->
+<!--                    <t t-foreach="data" t-as="dc">-->
+<!--                        <div class="room-info">-->
+<!--                            <h2>Room Name: <span t-esc="dc['name']"/></h2>-->
+<!--                            <p>Status: <span t-esc="dc['s_field']"/></p>-->
+<!--                            <p>Room Type: <span t-esc="dc['room_type']"/></p>-->
+<!--                            <p>Floor: <span t-esc="dc['floor']"/></p>-->
+<!--                            <p>Capacity: <span t-esc="dc['capacity']"/></p>-->
+<!--                        </div>-->
+<!--                    </t>-->
+<!--                </div>-->
+<!--                <div class="footer">-->
+<!--                    <p>Page X of Y</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </t>-->
+<!--</template>-->
+            <template id="report_building_wizard">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="web.external_layout">
+                            <div class="page">
+                                <h1>Wizard Report</h1>
+                                <p>Room Data:</p>
+
+<!--                                <ul>-->
+<!--                                    <t t-foreach="o.room_data" t-as="room">-->
+<!--                                        <li><t t-esc="room.name"/></li>-->
+<!--                                        &lt;!&ndash; Replace 'name' with the actual field you want to display &ndash;&gt;-->
+<!--                                    </t>-->
+<!--                                </ul>-->
+                            </div>
+                        </t>
+                    </t>
+                </t>
+        </template>
+
+        <record id="action_report_building_wizard" model="ir.actions.report">
+            <field name="name">Wizard Report</field>
+            <field name="model">building.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">building.report_building_wizard</field>
+        </record>
+
+    </data>
+</odoo>
+
+<!--  <template id="building_room_report_template">-->
+<!--      <t t-call="web.html_container">-->
+<!--         <div id="divdata" class="header">-->
+<!--            <h6 class="text-center">Details</h6>-->
+<!--            <div class="article">-->
+<!--               <table border="1">-->
+<!--                  <thead>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Room Name</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Status</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Room Type</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Floor</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Capacity</th>-->
+<!--                  </thead>-->
+<!--                  <tbody>-->
+<!--                     <t t-foreach="data" t-as="dc">-->
+<!--                        <tr>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['name']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['field_r']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['number']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['floor']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['capacity']"/>-->
+<!--                        </td>-->
+<!--                        </tr>-->
+<!--                     </t>-->
+<!--                  </tbody>-->
+<!--               </table>-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </t>-->
+<!--  </template>-->
+
+<!--   <template id="building_booked_room_report_template">-->
+<!--    <t t-call="web.html_container">-->
+<!--        <div id="divdata" class="header">-->
+<!--            <h6 class="text-center">Details</h6>-->
+<!--            <div class="article">-->
+<!--               <table border="1">-->
+<!--                  <thead>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Room Name</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Status</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Room Type</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Floor</th>-->
+<!--                     <th class="text-center" style="width:10%;font-size:15px">Capacity</th>-->
+<!--                  </thead>-->
+<!--                  <tbody>-->
+<!--                     <t t-foreach="data" t-as="dc">-->
+<!--                        <tr>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['name']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['field_r']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['number']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['floor']"/>-->
+<!--                        </td>-->
+<!--                        <td calss="text-center">-->
+<!--                        <span style="font-size:14px" t-esc="dc['capacity']"/>-->
+<!--                        </td>-->
+<!--                        </tr>-->
+<!--                     </t>-->
+<!--                  </tbody>-->
+<!--               </table>-->
+<!--            </div>-->
+<!--         </div>-->
+<!--    </t>-->
+<!--   </template>-->
+<!--      <record id="action_report_building_report" model="ir.actions.report">-->
+<!--               <field name="name">Building Booking Report</field>-->
+<!--                <field name="model">building.report</field>-->
+<!--                <field name="report_type">qweb-pdf</field>-->
+<!--               <field name="report_name">building.report_building_report</field>-->
+<!--       </record>-->
+<!--</data>-->
+<!--</odoo>-->
